@@ -27,5 +27,6 @@ jobs:
         name: Render and post
         run: |
           curl -sf -o make_video.py "$SB/storage/v1/object/public/downloads/video-engine/make_video.py"
-          curl -sf -o render.py "$SB/storage/v1/object/public/downloads/video-engine/render.py"
+          curl -sf -o render.py "$SB/storage/v1/object/public/downloads/video-engine/render_v2.py"
+          curl -sf -o carousel.py "$SB/storage/v1/object/public/downloads/video-engine/carousel.py"
           python render.py
