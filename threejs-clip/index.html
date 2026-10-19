@@ -65,7 +65,7 @@ for (const [name, t0, t1] of P.scenes) {
   const g = new THREE.Group(); g.visible = false; scene.add(g);
   const asp = bg.image.width / bg.image.height;
   const [vw] = vis(DB); const W = vw * 1.22;
-  const mb = new THREE.Mesh(new THREE.PlaneGeometry(W, W / asp), new THREE.MeshBasicMaterial({map: bg, transparent: true}));
+  const mb = new THREE.Mesh(new THREE.PlaneGeometry(W, W / asp), new THREE.MeshBasicMaterial({map: bg, transparent: true, depthWrite: false}));
   mb.position.z = -DB; g.add(mb);
   let mf = null;
   if (fg) {
