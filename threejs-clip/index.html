@@ -19,7 +19,7 @@ canvas{position:absolute;inset:0}
 </style></head>
 <body>
 <div id="vig"></div><div id="flash"></div>
-<div id="title"></div><div id="lyr"></div><div id="sig">stavjadam</div><img id="cover" src="a/cover.jpg">
+<div id="title"></div><div id="lyr"></div><div id="sig">stavjadam</div><img id="cover">
 <script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js"}}</script>
 <script type="module">
 import * as THREE from 'three';
@@ -28,6 +28,7 @@ const P = await (await fetch(`a/plan-${LANG}.json`)).json();
 const RTL = LANG === 'he';
 document.getElementById('title').textContent = RTL ? 'אהובתי' : 'My Love';
 document.getElementById('lyr').dir = RTL ? 'rtl' : 'ltr';
+document.getElementById('cover').src = `a/cover-${LANG}.jpg`;
 
 const renderer = new THREE.WebGLRenderer({antialias: true, preserveDrawingBuffer: true});
 renderer.setSize(1920, 1080); renderer.setPixelRatio(1);
