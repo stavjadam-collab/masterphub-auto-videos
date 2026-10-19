@@ -14,6 +14,7 @@
 | פרומו או השקה לאתר, 30-50 שניות, עם קריינות | masterphub-motion (Remotion) | `skills/masterphub-motion/` + `kits/promo-kit/` | הסגנון הקבוע: חלות דבש, זהב, כתוביות. |
 | סרטון הסבר אנכי עם קריינות (צעד אחרי צעד) | explainer-video | `skills/explainer-video/` | `spec.json` → `make_video.py`. |
 | קליפ לשיר | EffectCraft (חדש, 19.10.26) | `effectcraft/` | תמונות סצנה מג'מיני + תזמון מילים + אפקטים אמיתיים. כ-50 דקות רינדור לשיר. |
+| קליפ אנימציה מצוירת (פלאט וקטורי) בלי מודל וידאו, מסונכרן לביט | anime.js + SVG (רעיון, 19.10.26) | עוד לא בנוי | ציר זמן אחד, זיהוי ביטים, רינדור פריים-פריים בדפדפן ברקע. מתאים לשירים של stavjadam. |
 | דמות מדברת (אווטאר עם הקול של סתיו) | HeyGen (API) | `docs/heygen.md` | בתשלום לפי קרדיטים. רק כשבאמת צריך. |
 | וידאו אמיתי מתמונה (8-10 שניות) | Gemini / Grok בדפדפן | `docs/gemini-grok-video.md` | חינם, יש מכסה יומית. |
 | סרטון מחומרי סטוק עם קריינות באנגלית | OpenMontage בשרת | `docs/openmontage.md` | סשן "Montage" ב-claude.ai/code. |
