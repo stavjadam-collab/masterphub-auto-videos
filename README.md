@@ -43,7 +43,7 @@
 ## מבנה
 
 ```
-engine/          המנוע האוטומטי (GitHub Actions מוריד כרגע את העותק מ-Supabase: downloads/video-engine/)
+engine/          המנוע האוטומטי. GitHub Actions מריץ אותו ישירות מכאן (מקור יחיד)
 kits/            ערכות: particle-teaser, packvid, video-kit, promo-kit
 skills/          הסקילים: explainer-video, masterphub-motion
 effectcraft/     קליפים לשירים עם EffectCraft: gen.py, pipeline2.sh, הסבר
@@ -51,4 +51,4 @@ docs/            HeyGen, ג'מיני/גרוק, OpenMontage
 tools/           voice_check.py (בדיקת הגייה של קריינות)
 ```
 
-> חשוב: המנוע האוטומטי עדיין רץ מהעותק ב-Supabase. כשמשנים קובץ ב-`engine/`, צריך להעלות אותו גם לשם (או להעביר את ה-workflow לקרוא מהמאגר).
+> מ-19.10.26 המנוע רץ מהמאגר הזה בלבד. העותק הישן ב-Supabase (downloads/video-engine/) לא בשימוש.
