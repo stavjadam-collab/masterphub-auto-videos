@@ -1,0 +1,69 @@
+name: clip3d-render
+# Renders a song clip from threejs-clip/ (three.js page, frame by frame in headless Chromium)
+# in parallel chunks, joins them, adds the song, makes a small copy and uploads both to Supabase.
+on:
+  workflow_dispatch:
+    inputs:
+      lang:  { description: "he or en", default: "en" }
+      name:  { description: "output name in assets/mv/my-love/", default: "My-Love-en-3d" }
+
+env:
+  ANON: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml6d3NteHdqaW1vd2Fpb3lwbHphIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0ODQ1MzQsImV4cCI6MjA5NDA2MDUzNH0.qwvwopCpOycOBvOPNaPzDQqOkvvYkMrQXEoBqUs0ufc
+  CHUNKS: 16
+
+jobs:
+  render:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix: { part: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15] }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: setup
+        working-directory: threejs-clip
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+          sudo apt-get install -y -qq ffmpeg >/dev/null
+      - name: render chunk
+        working-directory: threejs-clip
+        env:
+          PW: playwright
+        run: |
+          D=$(python3 -c "import json;print(json.load(open('a/plan-${{ inputs.lang }}.json'))['dur'])")
+          read S E < <(python3 -c "
+          import math; D=$D; n=$CHUNKS; p=${{ matrix.part }}; L=math.ceil(D/n)
+          print(p*L, min(D,(p+1)*L))")
+          echo "part ${{ matrix.part }}: $S - $E"
+          node render.js ${{ inputs.lang }} $S $E part${{ matrix.part }}.mp4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: part${{ matrix.part }}
+          path: threejs-clip/part${{ matrix.part }}.mp4
+          retention-days: 3
+
+  finish:
+    needs: render
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { path: parts, merge-multiple: true }
+      - name: join and encode
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg >/dev/null
+          L=${{ inputs.lang }}
+          D=$(python3 -c "import json;print(json.load(open('threejs-clip/a/plan-$L.json'))['dur'])")
+          for i in $(seq 0 $((CHUNKS-1))); do echo "file 'parts/part$i.mp4'"; done > list.txt
+          ffmpeg -v error -y -f concat -safe 0 -i list.txt -c copy v.mp4
+          VB=$(python3 -c "print(int((28.5*8*1024)/$D - 160))")
+          ffmpeg -v error -y -i v.mp4 -c:v libx265 -b:v ${VB}k -x265-params pass=1:log-level=error -an -f null /dev/null
+          ffmpeg -v error -y -i v.mp4 -i threejs-clip/a/$L.mp3 -map 0:v -map 1:a -c:v libx265 -b:v ${VB}k -x265-params pass=2:log-level=error -tag:v hvc1 -c:a aac -b:a 128k -shortest -movflags +faststart small.mp4
+          ls -la small.mp4
+      - name: upload to supabase
+        run: |
+          curl -sf -X POST "https://izwsmxwjimowaioyplza.supabase.co/storage/v1/object/assets/mv/my-love/${{ inputs.name }}.mp4" \
+            -H "apikey: $ANON" -H "Authorization: Bearer $ANON" -H "Content-Type: video/mp4" --data-binary @small.mp4
