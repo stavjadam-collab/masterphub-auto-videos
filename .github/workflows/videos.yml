@@ -18,6 +18,8 @@ jobs:
           n=$(curl -s -X POST "$SB/rest/v1/rpc/video_pending" -H "apikey: $ANON" -H "Authorization: Bearer $ANON" -H "Content-Type: application/json" -d '{}')
           echo "pending=$n"; echo "pending=$n" >> "$GITHUB_OUTPUT"
       - if: steps.check.outputs.pending != '0'
+        uses: actions/checkout@v4
+      - if: steps.check.outputs.pending != '0'
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -26,8 +28,9 @@ jobs:
       - if: steps.check.outputs.pending != '0'
         name: Render and post
         run: |
-          curl -sf -o make_video.py "$SB/storage/v1/object/public/downloads/video-engine/make_video.py"
-          curl -sf -o render.py "$SB/storage/v1/object/public/downloads/video-engine/render_v2.py"
-          curl -sf -o carousel.py "$SB/storage/v1/object/public/downloads/video-engine/carousel.py"
+          # the engine lives in this repo (engine/) - single source of truth
+          cp engine/make_video.py make_video.py
+          cp engine/render_v2.py render.py
+          cp engine/carousel.py carousel.py
           export CAROUSEL_HUB_URL=
           python render.py
