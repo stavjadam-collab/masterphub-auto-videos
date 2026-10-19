@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="he" data-resolution="portrait">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="gsap.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:Inter,Arial,sans-serif}
+video{position:absolute;inset:0;width:1080px;height:1920px;object-fit:cover}
+#bg{z-index:1}
+#fx{position:absolute;inset:0;z-index:2}
+#person{z-index:3}
+#front{position:absolute;inset:0;z-index:4}
+#sig{position:absolute;left:0;width:1080px;bottom:60px;text-align:right;padding-right:60px;white-space:nowrap;text-shadow:0 2px 12px rgba(0,0,0,.8);font-family:"Segoe Script","Brush Script MT",cursive;font-size:56px;color:#fff;opacity:.85}
+/* אפקט לדוגמה: שם ענק מאחורי הראש. מחליפים את #fx לפי האפקט */
+.mast{position:absolute;top:150px;width:100%;text-align:center;font-family:Georgia,serif;font-weight:900;font-size:300px;letter-spacing:-.04em;color:#F5A623}
+.mast span{display:inline-block;opacity:0}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="{{DUR}}" data-width="1080" data-height="1920">
+  <!-- שכבה 1: הקליפ המקורי, ממנו גם הסאונד -->
+  <video id="bg" class="clip" src="video.mp4" data-start="0" data-duration="{{DUR}}" data-has-audio="true"></video>
+  <!-- שכבה 2: גרפיקה שמאחורי הדמות -->
+  <div id="fx" class="clip" data-start="0" data-duration="{{DUR}}">
+    <div class="mast" id="mast"><span>H</span><span>I</span><span>V</span><span>E</span></div>
+  </div>
+  <!-- שכבה 3: הדמות בלי רקע, מעל הגרפיקה -->
+  <video id="person" class="clip" src="person.webm" data-start="0" data-duration="{{DUR}}" muted></video>
+  <!-- שכבה 4: גרפיקה מלפנים (כתוביות, צ'אט). אף פעם לא על הפנים -->
+  <div id="front" class="clip" data-start="0" data-duration="{{DUR}}">
+    <div id="sig">stavjadam</div>
+  </div>
+</div>
+<script>
+window.__timelines = window.__timelines || {};
+const tl = gsap.timeline({ paused: true });
+tl.to("#mast span", { opacity: 1, y: 0, duration: .35, stagger: .12, ease: "power3.out" }, .2);
+window.__timelines["main"] = tl;
+</script>
+</body>
+</html>

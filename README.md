@@ -10,6 +10,7 @@
 | סרטון או קרוסלה אוטומטיים לכל "ריפו היום" ולכל פוסט בלוג | המנוע האוטומטי | `engine/` + `.github/workflows/videos.yml` | רץ לבד כל שעתיים בגיטהאב. לא נוגעים בו בלי סיבה. |
 | טיזר של 12 שניות לחבילת פרומפטים (חלקיקים שיוצרים את השם) | ערכת חלקיקים | `kits/particle-teaser/` | `python3 render.py cover.jpg "LINE1" "LINE2" "hook" music.mp3 out.mp4`. המשימה היומית של החבילות משתמשת בה. |
 | טיזר חבילה בסגנון השני (HyperFrames) | ערכת packvid | `kits/packvid/` | מתחלפת עם החלקיקים לפי מספר החבילה. |
+| אפקטים על קליפ אמיתי של סתיו מדבר (הפרדה מהרקע, גרפיקה מאחוריו) | ערכת talking-fx (HyperFrames, 19.10.26) | `kits/talking-fx/` | `bash prep.sh clip.mp4 work` ואז render. חינם, רץ גם במחשב בענן. 10 אפקטים מוכנים בחבילה באתר. |
 | טריילר לספר | ערכת וידאו | `kits/video-kit/` (`render.py book ...`) | משימת פוסט הספר היומית. |
 | פרומו או השקה לאתר, 30-50 שניות, עם קריינות | masterphub-motion (Remotion) | `skills/masterphub-motion/` + `kits/promo-kit/` | הסגנון הקבוע: חלות דבש, זהב, כתוביות. |
 | סרטון הסבר אנכי עם קריינות (צעד אחרי צעד) | explainer-video | `skills/explainer-video/` | `spec.json` → `make_video.py`. |
@@ -45,7 +46,7 @@
 
 ```
 engine/          המנוע האוטומטי. GitHub Actions מריץ אותו ישירות מכאן (מקור יחיד)
-kits/            ערכות: particle-teaser, packvid, video-kit, promo-kit
+kits/            ערכות: particle-teaser, packvid, talking-fx, video-kit, promo-kit
 skills/          הסקילים: explainer-video, masterphub-motion
 effectcraft/     קליפים לשירים עם EffectCraft: gen.py, pipeline2.sh, הסבר
 docs/            HeyGen, ג'מיני/גרוק, OpenMontage
