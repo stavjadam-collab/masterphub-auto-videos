@@ -1,0 +1,46 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>@font-face{font-family:R;src:url(Rubik-Bold.ttf)}html,body{margin:0;background:#0d0c0b}canvas{display:block}</style></head>
+<body><canvas id="c" width="720" height="1280"></canvas>
+<script>
+// Book trailer, 12s. CFG: {line, key, cover, cta}
+const W=720,H=1280,c=document.getElementById('c'),x=c.getContext('2d');
+const CFG=window.CFG||{line:'Some doors open only when you stop knocking',key:'doors',cover:'cover.jpg',cta:'On Amazon · stavjadam.com'};
+const ACC='#f59e0b';let img=new Image(),ready=false,words=[],lines=[];
+const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2,cl=v=>Math.max(0,Math.min(1,v));
+const rtl=/[֐-׿]/.test(CFG.line);
+function layout(){
+  words=CFG.line.split(/\s+/).filter(Boolean);
+  const n=words.length,size=n<=6?84:n<=10?70:58;x.font=`700 ${size}px R`;
+  lines=[];let cur=[];
+  for(const w of words){const t=[...cur,w].join(' ');if(x.measureText(t).width>W-110&&cur.length){lines.push(cur);cur=[w]}else cur.push(w)}
+  if(cur.length)lines.push(cur);
+  const lh=size*1.25,top=H/2-lines.length*lh/2+size*.4;let k=0;
+  words=[];lines.forEach((ln,li)=>{const tw=x.measureText(ln.join(' ')).width;let px=rtl?(W+tw)/2:(W-tw)/2;
+    for(const w of ln){const ww=x.measureText(w).width,sp=x.measureText(' ').width;
+      const cx=rtl?px-ww/2:px+ww/2;words.push({w,cx,cy:top+li*lh,i:k++,size,key:CFG.key&&w.replace(/[^\p{L}\p{N}]/gu,'')===CFG.key.replace(/[^\p{L}\p{N}]/gu,'')});
+      px+=rtl?-(ww+sp):(ww+sp)}});
+}
+function frame(sec){
+  x.fillStyle='#0d0c0b';x.fillRect(0,0,W,H);
+  if(ready){ // blurred cover backdrop
+    x.save();x.globalAlpha=.28;x.filter='blur(30px)';const s=Math.max(W/img.width,H/img.height)*1.15;
+    x.drawImage(img,(W-img.width*s)/2,(H-img.height*s)/2-sec*6,img.width*s,img.height*s);x.restore();x.filter='none'}
+  const v=x.createLinearGradient(0,0,0,H);v.addColorStop(0,'rgba(0,0,0,.5)');v.addColorStop(.5,'rgba(0,0,0,.15)');v.addColorStop(1,'rgba(0,0,0,.6)');x.fillStyle=v;x.fillRect(0,0,W,H);
+  // words 0.4s..~6.4s
+  const out=cl((sec-6.6)/.5),step=Math.min(.55,5.2/words.length);
+  x.textAlign='center';x.textBaseline='middle';
+  for(const o of words){const t=ease(cl((sec-.4-o.i*step)/.35));if(t<=0)continue;
+    const mode=o.i%4,sz=o.size;x.save();x.globalAlpha=t*(1-out);
+    let dx=0,dy=0,sc=1;if(mode==0)sc=1+(1-t)*1.6;else if(mode==1)dy=(1-t)*60;else if(mode==2)dx=(rtl?1:-1)*(1-t)*80;else sc=.6+t*.4;
+    x.translate(o.cx+dx,o.cy+dy);x.scale(sc,sc);x.font=`700 ${sz}px R`;x.fillStyle=o.key?ACC:'#f3eee8';x.shadowColor='rgba(0,0,0,.6)';x.shadowBlur=14;x.fillText(o.w,0,0);x.restore()}
+  // cover + cta 7s..12s
+  const cv=ease(cl((sec-7)/.9));
+  if(cv>0&&ready){const ch=640,cw=ch*img.width/img.height,cx=(W-cw)/2,cy=190+(1-cv)*100;
+    x.save();x.globalAlpha=cv;x.shadowColor='rgba(0,0,0,.7)';x.shadowBlur=50;x.shadowOffsetY=20;x.drawImage(img,cx,cy,cw,ch);x.restore();
+    const u=ease(cl((sec-8.1)/.6));x.globalAlpha=u;x.font='700 36px R';const tw=x.measureText(CFG.cta).width+70;
+    x.fillStyle=ACC;x.beginPath();x.roundRect((W-tw)/2,cy+ch+70,tw,80,40);x.fill();x.fillStyle='#111';x.fillText(CFG.cta,W/2,cy+ch+111);x.globalAlpha=1}
+}
+window.frame=frame;
+window.boot=async()=>{await document.fonts.load('700 40px R');await new Promise(r=>{img.onload=r;img.onerror=r;img.src=CFG.cover});ready=img.width>0;layout();return words.length};
+if(!window.RENDER){boot().then(()=>{const t0=performance.now();(function L(){frame(((performance.now()-t0)/1000)%12);requestAnimationFrame(L)})()})}
+</script></body></html>

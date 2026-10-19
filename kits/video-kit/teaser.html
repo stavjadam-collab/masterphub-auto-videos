@@ -1,0 +1,55 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>@font-face{font-family:P;src:url(Poppins-Bold.ttf)}html,body{margin:0;background:#0b0a09}canvas{display:block}</style></head>
+<body><canvas id="c" width="720" height="1280"></canvas>
+<script>
+// Masterphub pack teaser, 12s. Params in window.CFG: {l1, l2, hook, cover}
+const W=720,H=1280,c=document.getElementById('c'),x=c.getContext('2d');
+const CFG=window.CFG||{l1:'ONE PROMPT',l2:'ONE ANIMATION',hook:'Claude writes it. You hit record.',cover:'cover.jpg'};
+const AMB='#f59e0b',GOLD='#ffd27a',BG='#0b0a09';
+let P=[],img=new Image(),ready=false;
+function rnd(s){return()=>{s=(s*16807)%2147483647;return s/2147483647}}
+function build(){
+  const o=document.createElement('canvas');o.width=W;o.height=H;const ox=o.getContext('2d');
+  ox.fillStyle='#fff';ox.textAlign='center';ox.textBaseline='middle';
+  const fit=(t,max)=>{let s=max;ox.font=`700 ${s}px P`;while(ox.measureText(t).width>W-70&&s>30){s-=2;ox.font=`700 ${s}px P`}return s};
+  const s1=fit(CFG.l1,150);ox.font=`700 ${s1}px P`;ox.fillText(CFG.l1,W/2,CFG.l2?560:620);
+  if(CFG.l2){const s2=fit(CFG.l2,150);ox.font=`700 ${s2}px P`;ox.fillText(CFG.l2,W/2,560+Math.max(s1,s2)*1.05)}
+  const d=ox.getImageData(0,0,W,H).data,T=[];
+  for(let y=0;y<H;y+=3)for(let i=0;i<W;i+=3)if(d[(y*W+i)*4+3]>128)T.push([i,y]);
+  const r=rnd(7);const N=Math.max(5000,T.length);
+  for(let i=0;i<N;i++){const t=T[Math.floor(r()*T.length)];P.push({a:r()*6.2832,rad:40+r()*330,t,s:1+r()*1.8,w:r(),sp:.6+r()*.8})}
+}
+const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2,cl=v=>Math.max(0,Math.min(1,v));
+function frame(sec){
+  x.fillStyle=BG;x.fillRect(0,0,W,H);
+  const gr=x.createRadialGradient(W/2,H*.45,0,W/2,H*.45,700);gr.addColorStop(0,'rgba(80,45,5,.55)');gr.addColorStop(1,'rgba(0,0,0,0)');x.fillStyle=gr;x.fillRect(0,0,W,H);
+  // timeline: 0-1.5 galaxy, 1.5-3.2 form, 3.2-6 hold, 6-7.2 explode, 7-12 cover card
+  const form=ease(cl((sec-1.5)/1.7)),boom=ease(cl((sec-6)/1.2));
+  for(const p of P){
+    const a=p.a+sec*p.sp*(p.rad<150?1.4:.8),gx=W/2+Math.cos(a)*p.rad,gy=H*.45+Math.sin(a)*p.rad*.6;
+    let px=gx+(p.t[0]-gx)*form,py=gy+(p.t[1]-gy)*form;
+    if(form>.99&&boom==0){px+=Math.sin(sec*4+p.w*20)*.8;py+=Math.cos(sec*3+p.w*20)*.8}
+    if(boom>0){const ang=Math.atan2(py-H*.45,px-W/2)+p.w;px+=Math.cos(ang)*boom*900*p.sp;py+=Math.sin(ang)*boom*900*p.sp}
+    x.globalAlpha=(.5+p.w*.5)*(1-boom);x.fillStyle=p.w>.8?GOLD:AMB;x.fillRect(px,py,p.s,p.s)
+  }
+  x.globalAlpha=1;
+  // hook line under the title
+  const hk=cl((sec-3.4)/.6)*(1-cl((sec-5.8)/.4));
+  if(hk>0){x.globalAlpha=hk;x.fillStyle='#e8e2da';x.font='500 34px P';x.textAlign='center';x.fillText(CFG.hook,W/2,1000+(1-hk)*20);x.globalAlpha=1}
+  // cover card
+  const cv=ease(cl((sec-7)/.9));
+  if(cv>0&&ready){
+    const cw=470,ch=cw*img.height/img.width,cx=(W-cw)/2,cy=170+(1-cv)*120;
+    x.globalAlpha=cv;x.save();x.shadowColor='rgba(245,158,11,.45)';x.shadowBlur=40;
+    x.beginPath();x.roundRect(cx,cy,cw,ch,22);x.clip();x.drawImage(img,cx,cy,cw,ch);x.restore();
+    const u=ease(cl((sec-8.2)/.6));x.globalAlpha=u;
+    const by=cy+ch+60,pw=420;x.fillStyle=AMB;x.beginPath();x.roundRect((W-pw)/2,by,pw,84,42);x.fill();
+    x.fillStyle='#111';x.font='700 38px P';x.textAlign='center';x.textBaseline='middle';x.fillText('masterphub.io',W/2,by+43);
+    x.fillStyle='#e8e2da';x.font='500 28px P';x.fillText('Full pack on Masterphub',W/2,by+140);x.textBaseline='alphabetic';x.globalAlpha=1
+  }
+}
+window.frame=frame;
+window.boot=async()=>{await document.fonts.load('700 40px P');await document.fonts.load('500 30px P');build();
+  await new Promise(r=>{img.onload=r;img.onerror=r;img.src=CFG.cover});ready=img.width>0;return P.length};
+if(!window.RENDER){boot().then(()=>{const t0=performance.now();(function L(){frame(((performance.now()-t0)/1000)%12);requestAnimationFrame(L)})()})}
+</script></body></html>

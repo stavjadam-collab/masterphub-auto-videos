@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="gsap.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#0b0906}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:Inter,"Helvetica Neue",Arial,sans-serif;color:#fff}
+.bgimg{position:absolute;inset:-60px;background:url(img/cover.jpg) center/cover;filter:blur(40px) brightness(.45);transform:scale(1.2)}
+.shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,9,6,.2),rgba(11,9,6,.85))}
+.hook{position:absolute;top:170px;width:100%;padding:0 70px;text-align:center;font-size:92px;font-weight:900;line-height:1;letter-spacing:-.03em}
+.org{color:#f59e0b}
+.card{position:absolute;left:150px;top:470px;width:780px;height:1040px;border-radius:36px;overflow:hidden;border:4px solid #f59e0b;box-shadow:0 40px 120px rgba(0,0,0,.7)}
+.card img{width:100%;height:100%;object-fit:cover}
+.badge{position:absolute;left:110px;top:430px;background:#f59e0b;color:#0b0906;font-weight:900;font-size:44px;padding:14px 30px;border-radius:999px;transform:rotate(-6deg)}
+.title{position:absolute;bottom:250px;width:100%;padding:0 60px;text-align:center;font-size:62px;font-weight:800;line-height:1.08}
+.cta{position:absolute;bottom:120px;left:50%;transform:translateX(-50%);font-size:46px;font-weight:800;padding:20px 44px;border-radius:999px;background:#fff;color:#0b0906;white-space:nowrap}
+.end{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#0b0906}
+.logo{font-size:120px;font-weight:900}
+.url{margin-top:36px;font-size:56px;font-weight:800;padding:20px 44px;border-radius:999px;background:#f59e0b;color:#0b0906}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="12" data-width="1080" data-height="1920">
+  <audio src="music.mp3" data-start="0" data-duration="12" data-volume="0.9" data-fade-out="1"></audio>
+  <div class="bgimg clip" id="bgimg" data-start="0" data-duration="10.2"></div>
+  <div class="shade clip" data-start="0" data-duration="10.2"></div>
+  <div class="hook clip" id="hook" data-start="0" data-duration="10.2">{{HOOK}}</div>
+  <div class="card clip" id="card" data-start="0" data-duration="10.2"><img id="cimg" src="img/cover.jpg"></div>
+  <div class="badge clip" id="badge" data-start="0" data-duration="10.2">1 PHOTO → 10 SCENES</div>
+  <div class="title clip" id="title" data-start="0" data-duration="10.2">{{TITLE}}</div>
+  <div class="cta clip" id="cta" data-start="0" data-duration="10.2">Prompts in the pack ↓</div>
+  <div class="end clip" id="end" data-start="10" data-duration="2">
+    <div class="logo" id="logo">MASTER<span class="org">PHUB</span></div>
+    <div class="url" id="url">masterphub.io/packs</div>
+  </div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#bgimg",{scale:1.2},{scale:1.4,duration:10.2,ease:"none"},0);
+tl.fromTo("#hook",{y:-80,opacity:0},{y:0,opacity:1,duration:.6,ease:"expo.out"},0.1);
+tl.fromTo("#card",{y:1200,rotation:8},{y:0,rotation:-2,duration:.9,ease:"expo.out"},0.4);
+tl.fromTo("#cimg",{scale:1.25},{scale:1,duration:9,ease:"sine.out"},0.4);
+tl.to("#card",{rotation:2,duration:4,yoyo:true,repeat:1,ease:"sine.inOut"},1.3);
+tl.fromTo("#badge",{scale:0},{scale:1,duration:.5,ease:"back.out(3)"},1.3);
+tl.fromTo("#title",{y:60,opacity:0},{y:0,opacity:1,duration:.6,ease:"power3.out"},2);
+tl.fromTo("#cta",{opacity:0,y:40},{opacity:1,y:0,duration:.5},3);
+tl.to("#cta",{scale:1.06,duration:.45,yoyo:true,repeat:7,ease:"sine.inOut"},3.6);
+tl.fromTo("#end",{opacity:0},{opacity:1,duration:.3},10);
+tl.fromTo("#logo",{letterSpacing:"0.5em",opacity:0},{letterSpacing:"0em",opacity:1,duration:.7,ease:"expo.out"},10.1);
+tl.fromTo("#url",{scale:0},{scale:1,duration:.5,ease:"back.out(2.5)"},10.5);
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script>
+</body>
+</html>

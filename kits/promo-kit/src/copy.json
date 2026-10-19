@@ -1,0 +1,440 @@
+{
+ "he": {
+  "heads": [
+   "יש מוצר. *אין סרטון?*",
+   "מדביקים *קישור* למוצר",
+   "רק טענות *שנבדקו*",
+   "3 *כיוונים*, בוחרים אחד",
+   "תסריט *מתוזמן*",
+   "פרומפט *לכל שוט*",
+   "קריינות, כתוביות *ומודעה*"
+  ],
+  "vo": [
+   {
+    "file": "vo/he_0.mp3",
+    "frames": 100,
+    "cap": "יש לכם מוצר טוב, ואין לכם סרטון שמוכר אותו?",
+    "g": "M"
+   },
+   {
+    "file": "vo/he_1.mp3",
+    "frames": 131,
+    "cap": "מדביקים קישור לעמוד המוצר, ובוחרים מטרה, אורך ופלטפורמה.",
+    "g": "F"
+   },
+   {
+    "file": "vo/he_2.mp3",
+    "frames": 192,
+    "cap": "הכלי בודק מה באמת כתוב בעמוד. בלי ביקורות מומצאות, ובלי מספרים מהאוויר.",
+    "g": "M"
+   },
+   {
+    "file": "vo/he_3.mp3",
+    "frames": 99,
+    "cap": "מקבלים שלושה כיוונים לפרסומת, ובוחרים אחד.",
+    "g": "F"
+   },
+   {
+    "file": "vo/he_4.mp3",
+    "frames": 122,
+    "cap": "ואז חבילת הפקה: תסריט מתוזמן, שורה אחרי שורה.",
+    "g": "M"
+   },
+   {
+    "file": "vo/he_5.mp3",
+    "frames": 179,
+    "cap": "לכל שוט יש פרומפט מוכן לכלי וידאו. מעתיקים, מדביקים, ויוצא שוט.",
+    "g": "F"
+   },
+   {
+    "file": "vo/he_6.mp3",
+    "frames": 155,
+    "cap": "וגם קריינות, כתוביות וטקסט למודעה. הכל אפשר לערוך.",
+    "g": "M"
+   },
+   {
+    "file": "vo/he_7.mp3",
+    "frames": 159,
+    "cap": "שני קרדיטים לפרסומת. נרשמים בחינם, ומקבלים עשרה קרדיטים.",
+    "g": "F"
+   },
+   {
+    "file": "vo/he_8.mp3",
+    "frames": 83,
+    "cap": "בונה סרטוני הפרסומת, ב־Masterphub",
+    "g": "M"
+   }
+  ],
+  "ui": {
+   "cta": "נרשמים *בחינם*",
+   "credits": "קרדיטים במתנה",
+   "cost": "פרסומת אחת: 2 קרדיטים",
+   "name": "בונה סרטוני פרסומת ב־AI"
+  }
+ },
+ "en": {
+  "heads": [
+   "Great product. *No video?*",
+   "Paste a *link*",
+   "Only *checked* claims",
+   "3 *concepts*, pick one",
+   "A *timed* script",
+   "A *prompt* for every shot",
+   "Voiceover, captions, *ad copy*"
+  ],
+  "vo": [
+   {
+    "file": "vo/en_0.mp3",
+    "frames": 68,
+    "cap": "Got a good product, but no video that sells it?",
+    "g": "M"
+   },
+   {
+    "file": "vo/en_1.mp3",
+    "frames": 121,
+    "cap": "Paste the product page link, then pick your goal, length and platform.",
+    "g": "F"
+   },
+   {
+    "file": "vo/en_2.mp3",
+    "frames": 126,
+    "cap": "It checks what the page really says. No fake reviews. No made up numbers.",
+    "g": "M"
+   },
+   {
+    "file": "vo/en_3.mp3",
+    "frames": 71,
+    "cap": "You get three ad concepts. Pick one.",
+    "g": "F"
+   },
+   {
+    "file": "vo/en_4.mp3",
+    "frames": 99,
+    "cap": "Then the production package: a timed script, line by line.",
+    "g": "M"
+   },
+   {
+    "file": "vo/en_5.mp3",
+    "frames": 120,
+    "cap": "Every shot comes with a ready video prompt. Copy, paste, render.",
+    "g": "F"
+   },
+   {
+    "file": "vo/en_6.mp3",
+    "frames": 123,
+    "cap": "Plus voiceover, captions and ad copy. Everything is editable.",
+    "g": "M"
+   },
+   {
+    "file": "vo/en_7.mp3",
+    "frames": 107,
+    "cap": "Two credits per ad. Sign up free and get ten credits.",
+    "g": "F"
+   },
+   {
+    "file": "vo/en_8.mp3",
+    "frames": 71,
+    "cap": "The AI Video Ad Builder, on Masterphub.",
+    "g": "M"
+   }
+  ],
+  "ui": {
+   "cta": "Sign up *free*",
+   "credits": "free credits",
+   "cost": "One ad costs 2 credits",
+   "name": "AI Video Ad Builder"
+  }
+ },
+ "es": {
+  "heads": [
+   "Buen producto. *¿Sin video?*",
+   "Pega un *enlace*",
+   "Solo datos *verificados*",
+   "3 *conceptos*, eliges uno",
+   "Un guion *con tiempos*",
+   "Un *prompt* por toma",
+   "Locución, subtítulos y *texto*"
+  ],
+  "vo": [
+   {
+    "file": "vo/es_0.mp3",
+    "frames": 87,
+    "cap": "¿Tienes un buen producto, pero ningún video que lo venda?",
+    "g": "M"
+   },
+   {
+    "file": "vo/es_1.mp3",
+    "frames": 127,
+    "cap": "Pega el enlace de la página del producto y elige objetivo, duración y plataforma.",
+    "g": "F"
+   },
+   {
+    "file": "vo/es_2.mp3",
+    "frames": 197,
+    "cap": "Revisa lo que la página dice de verdad. Sin reseñas falsas. Sin números inventados.",
+    "g": "M"
+   },
+   {
+    "file": "vo/es_3.mp3",
+    "frames": 107,
+    "cap": "Recibes tres conceptos de anuncio. Eliges uno.",
+    "g": "F"
+   },
+   {
+    "file": "vo/es_4.mp3",
+    "frames": 131,
+    "cap": "Luego, el paquete de producción: un guion con tiempos, línea por línea.",
+    "g": "M"
+   },
+   {
+    "file": "vo/es_5.mp3",
+    "frames": 148,
+    "cap": "Cada toma trae un prompt de video listo. Copias, pegas y generas.",
+    "g": "F"
+   },
+   {
+    "file": "vo/es_6.mp3",
+    "frames": 152,
+    "cap": "Y además locución, subtítulos y texto del anuncio. Todo se puede editar.",
+    "g": "M"
+   },
+   {
+    "file": "vo/es_7.mp3",
+    "frames": 150,
+    "cap": "Dos créditos por anuncio. Regístrate gratis y recibe diez créditos.",
+    "g": "F"
+   },
+   {
+    "file": "vo/es_8.mp3",
+    "frames": 63,
+    "cap": "AI Video Ad Builder, en Masterphub.",
+    "g": "M"
+   }
+  ],
+  "ui": {
+   "cta": "Regístrate *gratis*",
+   "credits": "créditos de regalo",
+   "cost": "Un anuncio cuesta 2 créditos",
+   "name": "AI Video Ad Builder"
+  }
+ },
+ "fr": {
+  "heads": [
+   "Bon produit. *Pas de vidéo ?*",
+   "Collez un *lien*",
+   "Que des arguments *vérifiés*",
+   "3 *concepts*, un choix",
+   "Un script *minuté*",
+   "Un *prompt* par plan",
+   "Voix off, sous-titres, *annonce*"
+  ],
+  "vo": [
+   {
+    "file": "vo/fr_0.mp3",
+    "frames": 68,
+    "cap": "Un bon produit, mais aucune vidéo qui le vend ?",
+    "g": "M"
+   },
+   {
+    "file": "vo/fr_1.mp3",
+    "frames": 143,
+    "cap": "Collez le lien de la page produit, puis choisissez l'objectif, la durée et la plateforme.",
+    "g": "F"
+   },
+   {
+    "file": "vo/fr_2.mp3",
+    "frames": 171,
+    "cap": "L'outil vérifie ce que dit vraiment la page. Pas de faux avis. Pas de chiffres inventés.",
+    "g": "M"
+   },
+   {
+    "file": "vo/fr_3.mp3",
+    "frames": 104,
+    "cap": "Vous recevez trois concepts. Vous en choisissez un.",
+    "g": "F"
+   },
+   {
+    "file": "vo/fr_4.mp3",
+    "frames": 120,
+    "cap": "Ensuite, le dossier de production : un script minuté, ligne par ligne.",
+    "g": "M"
+   },
+   {
+    "file": "vo/fr_5.mp3",
+    "frames": 147,
+    "cap": "Chaque plan a son prompt vidéo prêt à l'emploi. Copier, coller, générer.",
+    "g": "F"
+   },
+   {
+    "file": "vo/fr_6.mp3",
+    "frames": 137,
+    "cap": "Et aussi la voix off, les sous-titres et le texte de l'annonce. Tout se modifie.",
+    "g": "M"
+   },
+   {
+    "file": "vo/fr_7.mp3",
+    "frames": 140,
+    "cap": "Deux crédits par pub. Inscription gratuite, avec dix crédits offerts.",
+    "g": "F"
+   },
+   {
+    "file": "vo/fr_8.mp3",
+    "frames": 66,
+    "cap": "AI Video Ad Builder, sur Masterphub.",
+    "g": "M"
+   }
+  ],
+  "ui": {
+   "cta": "Inscription *gratuite*",
+   "credits": "crédits offerts",
+   "cost": "Une pub coûte 2 crédits",
+   "name": "AI Video Ad Builder"
+  }
+ },
+ "pt": {
+  "heads": [
+   "Bom produto. *Sem vídeo?*",
+   "Cole um *link*",
+   "Só afirmações *verificadas*",
+   "3 *conceitos*, escolha um",
+   "Roteiro *com tempos*",
+   "Um *prompt* por cena",
+   "Locução, legendas e *texto*"
+  ],
+  "vo": [
+   {
+    "file": "vo/pt_0.mp3",
+    "frames": 78,
+    "cap": "Tem um bom produto, mas nenhum vídeo que venda?",
+    "g": "M"
+   },
+   {
+    "file": "vo/pt_1.mp3",
+    "frames": 127,
+    "cap": "Cole o link da página do produto e escolha objetivo, duração e plataforma.",
+    "g": "F"
+   },
+   {
+    "file": "vo/pt_2.mp3",
+    "frames": 224,
+    "cap": "A ferramenta confere o que a página diz de verdade. Sem avaliações falsas. Sem números inventados.",
+    "g": "M"
+   },
+   {
+    "file": "vo/pt_3.mp3",
+    "frames": 96,
+    "cap": "Você recebe três conceitos de anúncio. Escolhe um.",
+    "g": "F"
+   },
+   {
+    "file": "vo/pt_4.mp3",
+    "frames": 133,
+    "cap": "Depois, o pacote de produção: um roteiro com tempos, linha por linha.",
+    "g": "M"
+   },
+   {
+    "file": "vo/pt_5.mp3",
+    "frames": 117,
+    "cap": "Cada cena vem com um prompt de vídeo pronto. Copie, cole e gere.",
+    "g": "F"
+   },
+   {
+    "file": "vo/pt_6.mp3",
+    "frames": 140,
+    "cap": "E ainda locução, legendas e texto do anúncio. Tudo editável.",
+    "g": "M"
+   },
+   {
+    "file": "vo/pt_7.mp3",
+    "frames": 125,
+    "cap": "Dois créditos por anúncio. Cadastre-se grátis e ganhe dez créditos.",
+    "g": "F"
+   },
+   {
+    "file": "vo/pt_8.mp3",
+    "frames": 104,
+    "cap": "AI Video Ad Builder, na Masterphub.",
+    "g": "M"
+   }
+  ],
+  "ui": {
+   "cta": "Cadastre-se *grátis*",
+   "credits": "créditos de presente",
+   "cost": "Um anúncio custa 2 créditos",
+   "name": "AI Video Ad Builder"
+  }
+ },
+ "ar": {
+  "heads": [
+   "منتج جيد. *بلا فيديو؟*",
+   "الصق *رابطًا*",
+   "ادعاءات *موثّقة* فقط",
+   "3 *أفكار*، اختر واحدة",
+   "سيناريو *بالتوقيت*",
+   "برومبت *لكل لقطة*",
+   "تعليق صوتي وترجمة *ونص*"
+  ],
+  "vo": [
+   {
+    "file": "vo/ar_0.mp3",
+    "frames": 106,
+    "cap": "لديك منتج جيد، لكن لا يوجد فيديو يبيعه؟",
+    "g": "M"
+   },
+   {
+    "file": "vo/ar_1.mp3",
+    "frames": 137,
+    "cap": "الصق رابط صفحة المنتج، ثم اختر الهدف والمدة والمنصة.",
+    "g": "F"
+   },
+   {
+    "file": "vo/ar_2.mp3",
+    "frames": 225,
+    "cap": "الأداة تتحقق مما تقوله الصفحة فعلًا. لا مراجعات مزيفة، ولا أرقام مختلقة.",
+    "g": "M"
+   },
+   {
+    "file": "vo/ar_3.mp3",
+    "frames": 115,
+    "cap": "تحصل على ثلاث أفكار للإعلان، وتختار واحدة.",
+    "g": "F"
+   },
+   {
+    "file": "vo/ar_4.mp3",
+    "frames": 138,
+    "cap": "ثم حزمة الإنتاج: سيناريو بتوقيت دقيق، سطرًا بسطر.",
+    "g": "M"
+   },
+   {
+    "file": "vo/ar_5.mp3",
+    "frames": 156,
+    "cap": "لكل لقطة برومبت فيديو جاهز. انسخ، والصق، وأنشئ.",
+    "g": "F"
+   },
+   {
+    "file": "vo/ar_6.mp3",
+    "frames": 225,
+    "cap": "وأيضًا تعليق صوتي، وترجمة نصية، ونص الإعلان. وكل شيء قابل للتعديل.",
+    "g": "M"
+   },
+   {
+    "file": "vo/ar_7.mp3",
+    "frames": 156,
+    "cap": "رصيدان لكل إعلان. سجّل مجانًا واحصل على عشرة أرصدة.",
+    "g": "F"
+   },
+   {
+    "file": "vo/ar_8.mp3",
+    "frames": 85,
+    "cap": "AI Video Ad Builder على Masterphub",
+    "g": "M"
+   }
+  ],
+  "ui": {
+   "cta": "سجّل *مجانًا*",
+   "credits": "رصيدًا هدية",
+   "cost": "الإعلان الواحد يكلف رصيدين",
+   "name": "AI Video Ad Builder"
+  }
+ }
+}
