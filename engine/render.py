@@ -4,7 +4,7 @@ import json, os, re, subprocess, sys, urllib.request
 
 SB = 'https://izwsmxwjimowaioyplza.supabase.co'
 ANON = os.environ.get('SUPABASE_ANON', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml6d3NteHdqaW1vd2Fpb3lwbHphIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0ODQ1MzQsImV4cCI6MjA5NDA2MDUzNH0.qwvwopCpOycOBvOPNaPzDQqOkvvYkMrQXEoBqUs0ufc')
-HUB = os.environ.get('HUB_URL', '')
+HUB = os.environ['HUB_URL']  # from the HUB_URL repo secret; fail loudly if missing
 LOGO = 'https://masterphub.io/masterphub-logo-transparent.png'
 HOST = SB + '/storage/v1/object/public/assets/video/claudia.png'
 H = {'apikey': ANON, 'Authorization': 'Bearer ' + ANON}

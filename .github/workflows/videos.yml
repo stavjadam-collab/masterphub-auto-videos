@@ -11,12 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 40
     env:
+      # the publishing webhooks live in repo secrets (Settings > Secrets and variables > Actions), never in code
+      HUB_URL: ${{ secrets.HUB_URL }}
+      CAROUSEL_HUB_URL: ${{ secrets.CAROUSEL_HUB_URL }}
       SB: https://izwsmxwjimowaioyplza.supabase.co
       ANON: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml6d3NteHdqaW1vd2Fpb3lwbHphIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0ODQ1MzQsImV4cCI6MjA5NDA2MDUzNH0.qwvwopCpOycOBvOPNaPzDQqOkvvYkMrQXEoBqUs0ufc
     steps:
       - name: Anything to do?
         id: check
         run: |
+          if [ -z "$HUB_URL" ] || [ -z "$CAROUSEL_HUB_URL" ]; then echo "HUB_URL / CAROUSEL_HUB_URL secrets are missing"; exit 1; fi
           n=$(curl -s -X POST "$SB/rest/v1/rpc/video_pending" -H "apikey: $ANON" -H "Authorization: Bearer $ANON" -H "Content-Type: application/json" -d '{}')
           echo "pending=$n"; echo "pending=$n" >> "$GITHUB_OUTPUT"
       - if: steps.check.outputs.pending != '0'
@@ -34,5 +38,4 @@ jobs:
           cp engine/make_video.py make_video.py
           cp engine/render_v2.py render.py
           cp engine/carousel.py carousel.py
-          export CAROUSEL_HUB_URL=
           python render.py
